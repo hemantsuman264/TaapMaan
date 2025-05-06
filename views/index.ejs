@@ -46,27 +46,23 @@
             </div> 
         </div>
         <!-- container2 inside data images time temp -->
-        <% hour.forEach((item) => {
-            const time = item.time.slice(11,16); // "HH:MM"
-            const hour24 = parseInt(time.slice(0, 2));
-            const minutes = time.slice(3, 5);
-            const period = hour24 >= 12 ? "PM" : "AM";
-            const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
-        %>
-            <div class="cont2-data">
-                <div class="inside-blocks">
-                    <div>
-                        <p><%= hour12 + ':' + minutes + ' ' + period %></p>
-                    </div>
-                    <div>
-                        <img height="50px" width="50px" src="<%= item.condition.icon %>" alt="">
-                    </div>
-                    <div>
-                        <p style="font-size: 20px; color: white;"><%= item.temp_c %><sup>°C</sup></p>
+        <% if(locals.hour) { %>
+            <% hour.forEach((item)=>{ %>
+        <div class="cont2-data">
+                    <div class="inside-blocks">
+                        <div>
+                            <p><%= item.time.slice(11,16) %> AM</p>
+                        </div>
+                        <div>
+                            <img height="50px" width="50px" src=<%= item.condition.icon %> alt="">
+                        </div>
+                        <div>
+                            <p style="font-size: 20px; color: white;"><%= item.temp_c %><sup>°C</sup></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <% }) %>
+           <% })  %>
+    <% } %>
     </div>
 
   
